@@ -1,5 +1,5 @@
  ![HERO](assets/hero.png) 
- # CoronasGame
+ #     Corona's Game
 
 
 
