@@ -3,6 +3,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
+import java.lang.Runnable;
 
 public class LevelScreen extends BaseScreen
 {
@@ -17,7 +18,7 @@ public class LevelScreen extends BaseScreen
         BaseActor.setWorldBounds(space);
 
         spaceship = new Spaceship(300,200, mainStage);
-    
+        
         new Rock(600,500, mainStage);
         new Rock(600,300, mainStage);
         new Rock(600,100, mainStage);
@@ -26,18 +27,12 @@ public class LevelScreen extends BaseScreen
         new Rock(200,300, mainStage);
         new Rock(200,500, mainStage);
         new Rock(400,500, mainStage);
-        new Rock(600,500, mainStage);
-        new Rock(600,300, mainStage);
-        new Rock(600,100, mainStage);
-        new Rock(400,100, mainStage);
-        new Rock(200,100, mainStage);
-        new Rock(200,300, mainStage);
-        new Rock(200,500, mainStage);
-        new Rock(400,500, mainStage);
-
+        
         gameOver = false;
     }
 
+    
+    
     public void update(float dt)
     {
         
