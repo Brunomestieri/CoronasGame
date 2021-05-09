@@ -5,15 +5,32 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import java.lang.Runnable;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.graphics.Color;
+import javax.swing.*;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.MapProperties;
+import javax.swing.JOptionPane;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.utils.Align;
+//import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+
 public class LevelScreen extends BaseScreen
 {
     private Spaceship spaceship;
     private boolean gameOver;
+    int score;
 
     public void initialize() 
     {        
         BaseActor space = new BaseActor(0,0, mainStage);
         space.loadTexture( "assets/fundo.png" );
+        
         space.setSize(800,600);
         BaseActor.setWorldBounds(space);
 
@@ -29,6 +46,8 @@ public class LevelScreen extends BaseScreen
         new Rock(400,500, mainStage);
         
         gameOver = false;
+        
+        score = 0;
     }
 
     
@@ -72,6 +91,7 @@ public class LevelScreen extends BaseScreen
                     boom.centerAtActor(rockActor);
                     laserActor.remove();
                     rockActor.remove();
+                    score += 1;
                 }
             }
         }
@@ -84,6 +104,22 @@ public class LevelScreen extends BaseScreen
             messageWin.setOpacity(0);
             messageWin.addAction( Actions.fadeIn(1) );
             gameOver = true;
+            System.out.print("Sua pontuaçao foi: " + score);
+            //JOptionPane.showMessageDialog(null, "Pontuaçao conseguida: " + score, "alert", JOptionPane.ERROR_MESSAGE);
+            
+            int i = JOptionPane.showConfirmDialog(
+        null, 
+        "Pontuaçao atingida: " + score + " pontos!!! Deseja jogar novamente?"
+        );
+            if(i == JOptionPane.YES_OPTION) {
+            SpaceGame.setActiveScreen( new LevelScreen() );
+        }
+        else if(i == JOptionPane.NO_OPTION) {
+            
+        }
+        else if(i == JOptionPane.CANCEL_OPTION) {
+            System.exit(0);
+        }
         }
         
     }
